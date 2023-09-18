@@ -10,7 +10,26 @@
     <option name="highlightLevel" value="WARNING" />
     <option name="transferred" value="true" />
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="8.2" />
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/mistralys/application-utils" />
+      <path value="$PROJECT_DIR$/vendor/components/jquery" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/twbs/bootstrap" />
+      <path value="$PROJECT_DIR$/vendor/geshi/geshi" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/vendor/erusev/parsedown-extra" />
+      <path value="$PROJECT_DIR$/vendor/erusev/parsedown" />
+      <path value="$PROJECT_DIR$/vendor/neitanod/forceutf8" />
+      <path value="$PROJECT_DIR$/vendor/mistralys/jtokenizer" />
+      <path value="$PROJECT_DIR$/vendor/mistralys/application-localization" />
+      <path value="$PROJECT_DIR$/vendor/parsecsv/php-parsecsv" />
+      <path value="$PROJECT_DIR$/vendor/mistralys/markdown-viewer" />
+    </include_path>
+  </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="7.4">
+    <option name="suggestChangeDefaultLanguageLevel" value="false" />
+  </component>
   <component name="PhpStanOptionsConfiguration">
     <option name="transferred" value="true" />
   </component>
