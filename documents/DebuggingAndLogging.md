@@ -92,9 +92,9 @@ information.
 
 ### Writing request logs
 
-When the constant `APP_WRITE_LOG` is set to true, the entire application log is
-written to disk on every request. This allows debugging things from the very
-beginning of a request, including the user's authentication request chain.
+When request logging is enabled, the entire application log is written to 
+disk on every request. This allows debugging things from the very beginning of a 
+request, including the user's authentication request chain.
 
 The logs are written into the following folder:
 
@@ -123,13 +123,7 @@ The object-oriented interface makes it easy to progress in the folders.
 
 #### Accessing request logs via UI
 
-If the application has enabled the `htdocs/requestlog.php` dispatcher file,
+If the application has a dispatcher for the request log (typically `htdocs/requestlog.php`),
 navigating to it with the browser allows navigating and viewing the log files
-in a simple UI.
-
-The UI will only be available if the `APP_WRITE_LOG` is set to `true`, as it
-is only meant to be used for debugging.
-
-> NOTE: This dispatcher is not protected. We recommend enabling it only when
-> necessary, since the application log can give critical insight into the
-> application, and even display privileged information.
+in a simple UI. This requires the password set in the `APP_REQUESTLOG_PASSWORD`
+setting.
