@@ -20,19 +20,19 @@ The main environment configuration is used to determine which environments
 are available, and to set default and common values for application 
 configuration settings.
 
-1. Create a class that extends `BaseEnvironmentsConfig`.
+1. Create the class `ApplicationNamespace\Environments\EnvironmentsConfig` that extends `BaseEnvironmentsConfig`. 
 2. Implement all abstract methods.
-3. Create an instance of the class in the `app-config.php` file.
-4. Call the `detect()` method to detect the environment.
+3. Copy the code below into the `config/environments.php` file.
+4. Adjust the namespace as needed.
 
-Example:
+Code template for the environments configuration file:
 
 ```php
 declare(strict_types=1);
 
 use Application\Environments;
 use AppUtils\FileHelper\FolderInfo;
-use ApplicationNamespace\EnvironmentsConfig;
+use ApplicationNamespace\Environments\EnvironmentsConfig;
 
 try
 {
