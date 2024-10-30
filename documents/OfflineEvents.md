@@ -21,25 +21,54 @@ Instead, the cache manager relies on an offline event to let the cache locations
 register themselves. See [Managing Cache Locations](ManagingCacheLocations.md) 
 for more details on this process.
 
-## Defining offline events
+## Usage
 
-Adding offline events is done by adding a dedicated class in the application's
-`OfflineEvents` folder.
+### Class hierarchy
 
-1. Create the folder `{Driver}/OfflineEvents` in the application's class folder.
-2. Add the event class file, e.g. `MyEvent.php`.
+The offline events live in the `OfflineEvents` folder of the application:
+
+`{DriverName}/OfflineEvents/CriticalEvent.php`
+`{DriverName}/OfflineEvents/CriticalEvent/LogHandler.php`
+`{DriverName}/OfflineEvents/CriticalEvent/NotifyHandler.php`
+
+- `CriticalEvent.php` contains the event class.
+- `LogHandler.php` is a listener.
+- `NotifyHandler.php` is a listener.
+
+### Adding an offline event
+
+1. Create the folder `{DriverName}/OfflineEvents` if it does not exist.
+2. Create the event class, e.g. `CriticalEvent.php`.
 3. The class must extend `Application_EventHandler_Event`.
 4. Add the `EVENT_NAME` constant to easily access the event name.
+5. Add any relevant utility methods.
 
-## Listening to offline events
+### Adding listeners
 
-Because offline events are triggered before the objects are instantiated,
-there is no method to register listeners. Instead, the listeners are added
-as PHP classes in the event's folder.
+Listeners are added as separate classes in the same folder as the event class.
 
-The location is as follows:
+1. Create the class `{Driver}/OfflineEvents/{EventClassName}/MyListener.php`.
+2. The class must extend `Application_EventHandler_OfflineEvents_OfflineListener`.
+3. Add the `wakeUp()` method.
 
-`{Driver}/OfflineEvents/{EventClassName}/MyListener.php`
+The `wakeUp()` method must return a closure, which is the actual event listener.
+
+```php
+class LogHandler extends Application_EventHandler_OfflineEvents_OfflineListener
+{
+    protected function wakeUp(): NamedClosure
+    {
+        $callback = array($this, 'handleEvent');
+
+        return NamedClosure::fromClosure(Closure::fromCallable($callback), $callback);
+    }
+
+    private function handleEvent(CriticalEvent $event): void
+    {
+        // Handle the event here.
+    }
+}
+```
 
 You can find an example in the [Test application](TheTestApplication.md) at:
 
