@@ -36,6 +36,17 @@ class DocumentationHub
             ->addFolder(__DIR__ . '/../documents', true);
     }
 
+    private static ?DocumentationPages $pages = null;
+
+    public static function getPageLink() : DocumentationPages
+    {
+        if(is_null(self::$pages)) {
+            self::$pages = new DocumentationPages();
+        }
+
+        return self::$pages;
+    }
+
     public static function create(string $vendorFolder, string $vendorURL): DocumentationHub
     {
         return new DocumentationHub($vendorFolder, $vendorURL);
